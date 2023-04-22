@@ -1,0 +1,18 @@
+currentBuild.displayName = "DevOps-prushi-#"+currentBuild.number
+pipeline {
+    agent {
+        label 'master'
+    }
+}
+stages {
+    stage ('take docker') {
+        steps {
+            git url: 'https://github.com/Hrishi-patil/manual.git'
+        }
+    }
+    stage ('docker-build') {
+        steps {
+            sh 'docker build -t node-app .'
+        }
+    }
+}
